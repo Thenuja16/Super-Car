@@ -37,6 +37,20 @@
             text-decoration: none;
             color: black;
         }
+        .rating {
+            display: flex;
+            justify-content: center;
+            margin-top: 10px;
+        }
+        .star {
+            font-size: 24px;
+            color: gray;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+        .star:hover, .star.active {
+            color: gold;
+        }
     </style>
 </head>
 <body>
@@ -47,6 +61,13 @@
                 <img src="https://cdn.motor1.com/images/mgl/0XXWm/s3/ferrari-488-pista.jpg" alt="Ferrari 488 Pista">
                 <h2>Ferrari 488 Pista</h2>
                 <p>Click to learn more</p>
+                <div class="rating" data-car="ferrari">
+                    <span class="star" data-value="1">&#9733;</span>
+                    <span class="star" data-value="2">&#9733;</span>
+                    <span class="star" data-value="3">&#9733;</span>
+                    <span class="star" data-value="4">&#9733;</span>
+                    <span class="star" data-value="5">&#9733;</span>
+                </div>
             </div>
         </a>
         <a href="lamborghini.html">
@@ -54,6 +75,13 @@
                 <img src="https://example.com/lamborghini.jpg" alt="Lamborghini Aventador S">
                 <h2>Lamborghini Aventador S</h2>
                 <p>Click to learn more</p>
+                <div class="rating" data-car="lamborghini">
+                    <span class="star" data-value="1">&#9733;</span>
+                    <span class="star" data-value="2">&#9733;</span>
+                    <span class="star" data-value="3">&#9733;</span>
+                    <span class="star" data-value="4">&#9733;</span>
+                    <span class="star" data-value="5">&#9733;</span>
+                </div>
             </div>
         </a>
         <a href="bugatti.html">
@@ -61,8 +89,29 @@
                 <img src="https://example.com/bugatti.jpg" alt="Bugatti Chiron">
                 <h2>Bugatti Chiron</h2>
                 <p>Click to learn more</p>
+                <div class="rating" data-car="bugatti">
+                    <span class="star" data-value="1">&#9733;</span>
+                    <span class="star" data-value="2">&#9733;</span>
+                    <span class="star" data-value="3">&#9733;</span>
+                    <span class="star" data-value="4">&#9733;</span>
+                    <span class="star" data-value="5">&#9733;</span>
+                </div>
             </div>
         </a>
     </div>
+    <script>
+        document.querySelectorAll('.rating').forEach(rating => {
+            const stars = rating.querySelectorAll('.star');
+            stars.forEach(star => {
+                star.addEventListener('click', () => {
+                    let value = star.getAttribute('data-value');
+                    stars.forEach(s => s.classList.remove('active'));
+                    for (let i = 0; i < value; i++) {
+                        stars[i].classList.add('active');
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 </html>
